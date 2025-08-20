@@ -7,10 +7,11 @@ type State = UserAndIsSelected[];
 type Action =
   | { type: "set"; userList: User[] }
   | { type: "filter"; query: string }
-  | { type: "delete"; id: string }
-  | { type: "duplicate"; id: string }
+  | { type: "delete"; userList: UserAndIsSelected[] }
+  | { type: "duplicate"; userList: UserAndIsSelected[] }
   | { type: "toggleSelect"; id: string; }
-  ;
+  | { type: "toggleSelectAll"; value: boolean }
+;
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -18,14 +19,18 @@ function reducer(state: State, action: Action): State {
       return action.userList.map((user) => ({...user, isSelected: false}));
     case "filter":
       return state.filter((user) => user.login.includes(action.query));
-    case "delete":
-      return state.filter((user) => user.id !== action.id);
+    case "delete": {
+      const idList = action.userList.map((user) => user.id);
+      return state.filter((user) => !idList.includes(user.id));
+    }
     case "duplicate": {
-      const indexOfUser = state.findIndex((user) => user.id === action.id);
-      if (indexOfUser === -1) return state;
-      const user = state[indexOfUser];
-      const newUser: UserAndIsSelected = {...user, id: `${user.id} - copy`, isSelected: false};
-      return [...state.slice(0, indexOfUser), newUser, ...state.slice(indexOfUser + 1)];
+      const duplicateUserList: UserAndIsSelected[] = action.userList
+        .map((user) => ({
+          ...user,
+          id: `${user.id} - copy - ${window.crypto.randomUUID()}`,
+          isSelected: false,
+        }));
+      return [...state, ...duplicateUserList];
     }
     case "toggleSelect": {
       const indexOfUser = state.findIndex((user) => user.id === action.id);
@@ -34,9 +39,13 @@ function reducer(state: State, action: Action): State {
       const isSelected = !user.isSelected;
       return [
         ...state.slice(0, indexOfUser),
-        { ...user, isSelected },
+        {...user, isSelected},
         ...state.slice(indexOfUser + 1)
       ];
+    }
+    case "toggleSelectAll": {
+      const isSelected = action.value;
+      return state.map((user) => ({...user, isSelected}));
     }
   }
 }

@@ -22,3 +22,11 @@
 .filter::placeholder {
   color: var(--text-color);
 }
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 98%;
+  margin: 1%;
+}
