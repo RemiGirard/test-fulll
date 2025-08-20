@@ -1,7 +1,7 @@
 import {useReducer} from "react";
 import type {User} from "../../Domain/Entity/User.ts";
 
-type UserAndIsSelected = User & { isSelected: boolean };
+export type UserAndIsSelected = User & { isSelected: boolean };
 type State = UserAndIsSelected[];
 
 type Action =
@@ -9,6 +9,7 @@ type Action =
   | { type: "filter"; query: string }
   | { type: "delete"; id: string }
   | { type: "duplicate"; id: string }
+  | { type: "toggleSelect"; id: string; }
   ;
 
 function reducer(state: State, action: Action): State {
@@ -25,6 +26,17 @@ function reducer(state: State, action: Action): State {
       const user = state[indexOfUser];
       const newUser: UserAndIsSelected = {...user, id: `${user.id} - copy`, isSelected: false};
       return [...state.slice(0, indexOfUser), newUser, ...state.slice(indexOfUser + 1)];
+    }
+    case "toggleSelect": {
+      const indexOfUser = state.findIndex((user) => user.id === action.id);
+      if (indexOfUser === -1) return state;
+      const user = state[indexOfUser];
+      const isSelected = !user.isSelected;
+      return [
+        ...state.slice(0, indexOfUser),
+        { ...user, isSelected },
+        ...state.slice(indexOfUser + 1)
+      ];
     }
   }
 }

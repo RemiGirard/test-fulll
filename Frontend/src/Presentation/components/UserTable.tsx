@@ -1,17 +1,18 @@
-import type {User} from "../../Domain/Entity/User.ts";
 import styles from "./UserTable.module.css";
+import type {UserAndIsSelected} from "../hooks/useUserListReducer.tsx";
 
 type Props = {
-  userList: User[];
-  RenderUser: React.FC<{ user: User }>;
+  userList: UserAndIsSelected[];
+  RenderUser: React.FC<{ user: UserAndIsSelected; onToggleSelect: () => void }>;
   isLoading: boolean;
+  onToggleSelect: (id: string) => void;
 }
 
-export default function UserTable({userList, RenderUser, isLoading}: Props) {
+export default function UserTable({userList, RenderUser, isLoading, onToggleSelect}: Props) {
   return (<div className={`${styles.main}`}>
     {isLoading
       ? <div className={`${styles.loading}`}><p>Loading...</p></div>
-      : userList.map((user) => <RenderUser key={user.id} user={user}/>)
+      : userList.map((user) => <RenderUser key={user.id} user={user} onToggleSelect={() => onToggleSelect(user.id)} />)
     }
   </div>);
 }

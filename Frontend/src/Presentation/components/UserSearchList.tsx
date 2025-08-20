@@ -30,6 +30,11 @@ export default function UserSearchList() {
     <div className={`${styles.selectionSection}`}>
 
     </div>
-    <UserTable userList={userList} RenderUser={UserPreview} isLoading={userListIsLoading}/>
+    <UserTable
+      userList={userList}
+      RenderUser={UserPreview}
+      isLoading={userListIsLoading}
+      onToggleSelect={(id) => dispatchUserList({ type: "toggleSelect", id })}
+    />
   </div>);
 }
