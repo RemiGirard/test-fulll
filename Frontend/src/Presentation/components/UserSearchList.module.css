@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.filter {
+  border: none;
+  background-color: var(--alt-background-color);
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 550;
+  text-align: center;
+  padding: 0.8rem;
+  width: 400px;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.filter::placeholder {
+  color: var(--text-color);
+}

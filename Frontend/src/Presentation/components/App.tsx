@@ -7,9 +7,9 @@ export default function App() {
   return (<>
     <Header>Github Search</Header>
     <main className={`${styles.main}`}>
-        <section className={`${styles.section}`}>
-            <UserSearchList />
-        </section>
+      <section className={`${styles.section}`}>
+        <UserSearchList/>
+      </section>
     </main>
   </>);
 }
