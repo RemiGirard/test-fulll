@@ -1,15 +1,15 @@
 import {type ChangeEventHandler, useEffect, useRef, useState} from "react";
-import getUserList from "../../Domain/UseCase/queryUserList.ts";
+import getUserList from "../../Domain/UseCase/queryUserList";
 import styles from "./UserSearchList.module.css";
-import UserTable from "./UserTable.tsx";
-import UserPreview from "./UserPreview.tsx";
-import useUserListReducer from "../hooks/useUserListReducer.tsx";
-import TextInputDebounced from "./TextInputDebounced.tsx";
-import Copy from "../assets/icons/Copy.tsx";
-import Trash from "../assets/icons/Trash.tsx";
-import StyledCheckbox from "./StyledCheckbox.tsx";
-import Cross from "../assets/icons/Cross.tsx";
-import Pencil from "../assets/icons/Pencil.tsx";
+import UserTable from "./UserTable";
+import UserPreview from "./UserPreview";
+import useUserListReducer from "../hooks/useUserListReducer";
+import TextInputDebounced from "./TextInputDebounced";
+import Copy from "../assets/icons/Copy";
+import Trash from "../assets/icons/Trash";
+import StyledCheckbox from "./StyledCheckbox";
+import Cross from "../assets/icons/Cross";
+import Pencil from "../assets/icons/Pencil";
 
 export default function UserSearchList() {
   const [userListIsLoading, setUserListIsLoading] = useState(true);

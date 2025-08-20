@@ -1,7 +1,7 @@
-import Header from "./Header.tsx";
+import Header from "./Header";
 
 import styles from "./App.module.css";
-import UserSearchList from "./UserSearchList.tsx";
+import UserSearchList from "./UserSearchList";
 
 export default function App() {
   return (<>

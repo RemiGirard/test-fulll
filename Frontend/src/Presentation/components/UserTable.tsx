@@ -1,5 +1,5 @@
 import styles from "./UserTable.module.css";
-import type {UserAndIsSelected} from "../hooks/useUserListReducer.tsx";
+import type {UserAndIsSelected} from "../hooks/useUserListReducer";
 
 type Props = {
   userList: UserAndIsSelected[];

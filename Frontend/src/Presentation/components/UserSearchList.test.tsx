@@ -2,11 +2,11 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, beforeEach, expect, vi } from 'vitest';
 import UserSearchList from './UserSearchList';
 
-vi.mock('../../Domain/UseCase/queryUserList.ts', () => ({
+vi.mock('../../Domain/UseCase/queryUserList', () => ({
   default: vi.fn(),
 }));
 
-import getUserList from '../../Domain/UseCase/queryUserList.ts';
+import getUserList from '../../Domain/UseCase/queryUserList';
 const mockGetUserList = vi.mocked(getUserList);
 
 describe('UserSearchList', () => {

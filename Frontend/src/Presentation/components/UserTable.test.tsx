@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import UserTable from './UserTable';
 import type { User } from '../../Domain/Entity/User';
-import type {UserAndIsSelected} from "../hooks/useUserListReducer.tsx";
+import type {UserAndIsSelected} from "../hooks/useUserListReducer";
 
 const RenderUser = ({ user }: { user: User }) => (
   <div data-testid="user-card">{user.login}</div>

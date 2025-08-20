@@ -1,5 +1,5 @@
 import {useReducer} from "react";
-import type {User} from "../../Domain/Entity/User.ts";
+import type {User} from "../../Domain/Entity/User";
 
 export type UserAndIsSelected = User & { isSelected: boolean };
 type State = UserAndIsSelected[];

@@ -1,5 +1,5 @@
-import type UserInterface from "../../Domain/UseCase/UserInterface.ts";
-import type {User} from "../../Domain/Entity/User.ts";
+import type UserInterface from "../../Domain/UseCase/UserInterface";
+import type {User} from "../../Domain/Entity/User";
 
 // Fake user list for testing purposes
 export class UserImplementation implements UserInterface {

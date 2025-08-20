@@ -1,6 +1,6 @@
-import type UserInterface from "../../Domain/UseCase/UserInterface.ts";
-import type { User } from "../../Domain/Entity/User.ts";
-import type { Query } from "../../Domain/Entity/Query.ts";
+import type UserInterface from "../../Domain/UseCase/UserInterface";
+import type { User } from "../../Domain/Entity/User";
+import type { Query } from "../../Domain/Entity/Query";
 
 const DEFAULT_USERS: User[] = [
   { id: "547662", login: "lfalorni", avatarUrl: "https://github.com/lfalorni.png" },

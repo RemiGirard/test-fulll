@@ -1,6 +1,6 @@
 import styles from "./UserPreview.module.css";
-import type {UserAndIsSelected} from "../hooks/useUserListReducer.tsx";
-import StyledCheckbox from "./StyledCheckbox.tsx";
+import type {UserAndIsSelected} from "../hooks/useUserListReducer";
+import StyledCheckbox from "./StyledCheckbox";
 
 type Props = {
   user: UserAndIsSelected;

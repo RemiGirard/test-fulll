@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import useUserListReducer, {type UserAndIsSelected} from "./useUserListReducer";
 import { describe, it, expect } from "vitest";
-import type {User} from "../../Domain/Entity/User.ts";
+import type {User} from "../../Domain/Entity/User";
 
 const sampleUsers: User[] = [
   { id: "1", login: "alice", avatarUrl: "https://myimg/alice" },
