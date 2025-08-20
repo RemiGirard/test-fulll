@@ -47,13 +47,18 @@ An optimization that avoids using modulo is to use a count, increment it and res
 
 ## Frontend
 
+## Requirements
+
+ - [Node.js](https://nodejs.org/en/download)
+ - [pnpm](https://pnpm.io/installation)
+
 ## Usage
 
 ```bash
     cd Frontend
     pnpm install
     pnpm run dev
-    # open http://localhost:5137/ in your browser
+    # open http://localhost:5173/ in your browser
 ```
 
 ## Explanation
@@ -69,5 +74,3 @@ After pointing out the issue, I have been allowed to use [Vite](https://vite.dev
 ### pnpm
 
 [pnpm](https://pnpm.io/) is used for package management because it's widely adopted and fast.
-
-
