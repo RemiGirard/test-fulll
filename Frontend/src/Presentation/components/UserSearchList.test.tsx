@@ -15,17 +15,17 @@ describe('UserSearchList', () => {
   });
 
   it('renders search input and user table structure', async () => {
-    mockGetUserList.mockResolvedValueOnce([]);
+    mockGetUserList.mockResolvedValueOnce({status: "ok", result: []});
     render(<UserSearchList />);
     expect(screen.getByPlaceholderText(/search input/i)).toBeTruthy();
     expect(screen.getByText(/loading/i)).toBeTruthy();
   });
 
   it('displays users when present', async () => {
-    mockGetUserList.mockResolvedValueOnce([
+    mockGetUserList.mockResolvedValueOnce({status: "ok", result: [
       { id: '1', login: 'john', avatarUrl: 'avatar1' },
       { id: '2', login: 'jane', avatarUrl: 'avatar2' },
-    ]);
+    ]});
     render(<UserSearchList />);
     await waitFor(() => {
       expect(screen.getByText('john')).toBeTruthy();
@@ -34,9 +34,9 @@ describe('UserSearchList', () => {
   });
 
   it('updates user list when filter text changes', async () => {
-    mockGetUserList.mockResolvedValueOnce([]).mockResolvedValueOnce([
+    mockGetUserList.mockResolvedValueOnce({status: "ok", result: []}).mockResolvedValueOnce({status: "ok", result:  [
       { id: '99', login: 'jack', avatarUrl: 'avatar99' },
-    ]);
+    ]});
     render(<UserSearchList />);
     const input = screen.getByPlaceholderText(/search input/i);
     fireEvent.change(input, { target: { value: 'ja' } });
@@ -46,7 +46,7 @@ describe('UserSearchList', () => {
   });
 
   it('shows nothing when no users found and not loading', async () => {
-    mockGetUserList.mockResolvedValueOnce([]);
+    mockGetUserList.mockResolvedValueOnce({status: "ok", result: []});
     render(<UserSearchList />);
     await waitFor(() => {
       expect(screen.queryByText(/loading/i)).toBeNull();
