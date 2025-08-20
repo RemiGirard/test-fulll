@@ -16,6 +16,7 @@ export default function UserSearchList() {
   const [filterText, setFilterText] = useState("");
   const selectAllRef = useRef<HTMLInputElement>(null);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [status, setStatus] = useState<string>("ok");
 
   const [userList, dispatchUserList] = useUserListReducer();
   const userListIsSelected = userList.filter((user) => user.isSelected);
@@ -42,8 +43,9 @@ export default function UserSearchList() {
   useEffect(() => {
     setUserListIsLoading(true);
     console.debug("filterText", filterText);
-    getUserList({text: filterText}).then((newUserList) => {
+    getUserList({text: filterText}).then(({status, result: newUserList}) => {
       dispatchUserList({type: "set", userList: newUserList});
+      setStatus(status);
       setUserListIsLoading(false);
     });
   }, [filterText]);
@@ -92,6 +94,7 @@ export default function UserSearchList() {
       isLoading={userListIsLoading}
       onToggleSelect={(id) => dispatchUserList({type: "toggleSelect", id})}
       isEditMode={isEditMode}
+      status={status}
     />
   </div>);
 }
