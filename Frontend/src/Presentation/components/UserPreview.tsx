@@ -1,5 +1,6 @@
 import styles from "./UserPreview.module.css";
 import type {UserAndIsSelected} from "../hooks/useUserListReducer.tsx";
+import StyledCheckbox from "./StyledCheckbox.tsx";
 
 type Props = {
   user: UserAndIsSelected;
@@ -8,8 +9,7 @@ type Props = {
 
 export default function UserPreview({user, onToggleSelect}: Props) {
   return (<div className={`${styles.main}`}>
-    <input
-      type="checkbox"
+    <StyledCheckbox
       className={`${styles.checkbox}`}
       checked={user.isSelected}
       onChange={onToggleSelect}

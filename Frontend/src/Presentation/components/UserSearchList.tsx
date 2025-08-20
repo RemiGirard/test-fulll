@@ -5,6 +5,9 @@ import UserTable from "./UserTable.tsx";
 import UserPreview from "./UserPreview.tsx";
 import useUserListReducer from "../hooks/useUserListReducer.tsx";
 import TextInputDebounced from "./TextInputDebounced.tsx";
+import Copy from "../assets/icons/Copy.tsx";
+import Trash from "../assets/icons/Trash.tsx";
+import StyledCheckbox from "./StyledCheckbox.tsx";
 
 export default function UserSearchList() {
   const [userListIsLoading, setUserListIsLoading] = useState(true);
@@ -39,7 +42,7 @@ export default function UserSearchList() {
   }, [filterText]);
 
   useEffect(() => {
-    if(selectAllRef.current) {
+    if (selectAllRef.current) {
       selectAllRef.current.indeterminate = selectAllIsIndeterminate;
     }
   }, [selectAllIsIndeterminate])
@@ -51,25 +54,33 @@ export default function UserSearchList() {
       placeholder="Search input"
     />
     <div className={`${styles.actions}`}>
-      <div>
-          <input
-            ref={selectAllRef}
-            type="checkbox"
-            onChange={handleToggleSelectAll}
-            checked={userListIsSelectedLength === userListLength}
-          />
+      <div className={`${styles.selectElementsInfo}`}>
+        <StyledCheckbox
+          ref={selectAllRef}
+          className={`${styles.checkbox}`}
+          onChange={handleToggleSelectAll}
+          checked={userListIsSelectedLength === userListLength}
+        />
         {userListIsSelectedLength} elements selected
       </div>
       <div>
-        <button disabled={userListLength === 0} onClick={handleDuplicate}>Duplicate</button>
-        <button disabled={userListLength === 0} onClick={handleDelete}>Delete</button>
+        <button
+          className={`${styles.button}`}
+          disabled={userListLength === 0}
+          onClick={handleDuplicate}
+        ><Copy/></button>
+        <button
+          className={`${styles.button}`}
+          disabled={userListLength === 0}
+          onClick={handleDelete}
+        ><Trash/></button>
       </div>
     </div>
     <UserTable
       userList={userList}
       RenderUser={UserPreview}
       isLoading={userListIsLoading}
-      onToggleSelect={(id) => dispatchUserList({ type: "toggleSelect", id })}
+      onToggleSelect={(id) => dispatchUserList({type: "toggleSelect", id})}
     />
   </div>);
 }

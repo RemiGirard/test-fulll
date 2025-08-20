@@ -59,38 +59,4 @@
   position: absolute;
   top: 6px;
   left: 6px;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border: 2px solid var(--text-color);
-  border-radius: 3px;
-  background-color: transparent;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-}
-
-.checkbox::after {
-  content: "";
-  width: 14px;
-  height: 14px;
-  background: var(--text-color);
-  clip-path: polygon(
-    0% 40%,
-    40% 60%,
-    100% 10%,
-    100% 30%,
-    40% 90%,
-    0% 60%
-  );
-  opacity: 0;
-}
-
-
-.checkbox:checked::after {
-  opacity: 1;
-}
-
-.checkbox:checked {
-  background-color: var(--higlight-color); /* blue background when checked */
 }
