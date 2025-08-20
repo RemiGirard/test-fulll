@@ -7,8 +7,8 @@ Technical test for Fulll.
 ### Usage
 ```bash
   cd Algo
-  node main.js
-  # Please enter a number: [50]
+  node main.mjs
+  # Please enter a number and press enter: [50]
   # enter a number or just press enter to use default value
 ```
 
@@ -61,9 +61,13 @@ An optimization that avoids using modulo is to use a count, increment it and res
     # open http://localhost:5173/ in your browser
 ```
 
-## Explanation
+## Tests
 
-### Vite instead of `create-react-app`
+```bash
+    pnpm run test
+```
+
+## Vite instead of `create-react-app`
 
 The instructions in the README, indicate to use `create-react-app`. This tool is [officially deprecated](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) and should not be used anymore.
 
@@ -71,6 +75,39 @@ The [React documentation](https://react.dev/learn/build-a-react-app-from-scratch
 
 After pointing out the issue, I have been allowed to use [Vite](https://vite.dev/).
 
-### pnpm
+## pnpm
 
 [pnpm](https://pnpm.io/) is used for package management because it's widely adopted and fast.
+
+## Architecture
+
+The directories are in `Frontend/src/`:
+
+- Domain
+  - Entities and use cases.
+- Infrastructure
+  - Access to external services (e.g., API calls).
+- Presentation
+  - Components, assets and hooks.
+
+## Styling
+
+I used default CSS Modules for its modularity and simplicity.
+
+## Testing
+
+I use Vitest for its simplicity and speed.
+Test files live next to the components they test to also serve as documentation.
+
+## Reducer
+
+In `UserSearchList.tsx`, to handle table logic, I used a reducer.
+
+It's rarely used but it's good practice to handle complex logic and multiple actions of a table.
+
+```typescript
+  const [userList, dispatchUserList] = useUserListReducer();
+```
+
+All actions on the userList are available through the `dispatchUserList` function and defined in `useUserListReducer.ts`.
+
