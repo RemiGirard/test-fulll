@@ -20,7 +20,7 @@ export class UserImplementation implements UserInterface {
 
     if (!text) return {status: "ok", result: DEFAULT_USERS};
 
-    const url = `https://api.github.com/search/users?q=${encodeURIComponent(text)}&per_page=10`;
+    const url = `https://api.github.com/search/users?q=${encodeURIComponent(text)}&per_page=50`;
 
     try {
       const res = await fetch(url);
