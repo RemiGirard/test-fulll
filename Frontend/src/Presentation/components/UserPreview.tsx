@@ -5,12 +5,13 @@ import StyledCheckbox from "./StyledCheckbox.tsx";
 type Props = {
   user: UserAndIsSelected;
   onToggleSelect: () => void;
+  isEditMode: boolean;
 }
 
-export default function UserPreview({user, onToggleSelect}: Props) {
+export default function UserPreview({user, onToggleSelect, isEditMode}: Props) {
   return (<div className={`${styles.main}`}>
     <StyledCheckbox
-      className={`${styles.checkbox}`}
+      className={`${styles.checkbox} ${isEditMode ? "" : styles.hidden}`}
       checked={user.isSelected}
       onChange={onToggleSelect}
     />

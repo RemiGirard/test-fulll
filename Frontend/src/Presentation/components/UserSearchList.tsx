@@ -8,11 +8,14 @@ import TextInputDebounced from "./TextInputDebounced.tsx";
 import Copy from "../assets/icons/Copy.tsx";
 import Trash from "../assets/icons/Trash.tsx";
 import StyledCheckbox from "./StyledCheckbox.tsx";
+import Cross from "../assets/icons/Cross.tsx";
+import Pencil from "../assets/icons/Pencil.tsx";
 
 export default function UserSearchList() {
   const [userListIsLoading, setUserListIsLoading] = useState(true);
   const [filterText, setFilterText] = useState("");
   const selectAllRef = useRef<HTMLInputElement>(null);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const [userList, dispatchUserList] = useUserListReducer();
   const userListIsSelected = userList.filter((user) => user.isSelected);
@@ -30,6 +33,10 @@ export default function UserSearchList() {
 
   const handleDelete = () => {
     dispatchUserList({type: "delete", userList: userListIsSelected});
+  }
+
+  const handleToggleEditMode = () => {
+    setIsEditMode(!isEditMode);
   }
 
   useEffect(() => {
@@ -57,23 +64,26 @@ export default function UserSearchList() {
       <div className={`${styles.selectElementsInfo}`}>
         <StyledCheckbox
           ref={selectAllRef}
-          className={`${styles.checkbox}`}
+          className={`${styles.checkbox} ${isEditMode ? "" : styles.hidden}`}
           onChange={handleToggleSelectAll}
           checked={userListIsSelectedLength === userListLength}
         />
         {userListIsSelectedLength} elements selected
       </div>
-      <div>
-        <button
-          className={`${styles.button}`}
-          disabled={userListLength === 0}
-          onClick={handleDuplicate}
-        ><Copy/></button>
-        <button
-          className={`${styles.button}`}
-          disabled={userListLength === 0}
-          onClick={handleDelete}
-        ><Trash/></button>
+      <div className={`${styles.actionButtons}`}>
+        {isEditMode && (<>
+          <button
+            className={`${styles.button}`}
+            disabled={userListLength === 0}
+            onClick={handleDuplicate}
+          ><Copy/></button>
+          <button
+            className={`${  styles.button}`}
+            disabled={userListLength === 0}
+            onClick={handleDelete}
+          ><Trash/></button>
+        </>)}
+        <button className={`${styles.button}`} onClick={handleToggleEditMode}>{isEditMode ? <Cross /> : <Pencil />}</button>
       </div>
     </div>
     <UserTable
@@ -81,6 +91,7 @@ export default function UserSearchList() {
       RenderUser={UserPreview}
       isLoading={userListIsLoading}
       onToggleSelect={(id) => dispatchUserList({type: "toggleSelect", id})}
+      isEditMode={isEditMode}
     />
   </div>);
 }

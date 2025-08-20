@@ -60,3 +60,7 @@
   top: 6px;
   left: 6px;
 }
+
+.hidden {
+  opacity: 0;
+}
