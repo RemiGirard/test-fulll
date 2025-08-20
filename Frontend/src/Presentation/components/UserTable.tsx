@@ -22,13 +22,15 @@ export default function UserTable({userList, RenderUser, isLoading, onToggleSele
   }
 
   return (<div className={`${styles.main}`}>
-    {message
-      ? <div className={`${styles.loading}`}><p>{message}</p></div>
-      : userList.map((user) => <RenderUser
-        key={user.id} user={user}
-        onToggleSelect={() => onToggleSelect(user.id)}
-        isEditMode={isEditMode}
-      />)
-    }
+    <div className={`${styles.secondary}`}>
+      {message
+        ? <div className={`${styles.loading}`}><p>{message}</p></div>
+        : userList.map((user) => <RenderUser
+          key={user.id} user={user}
+          onToggleSelect={() => onToggleSelect(user.id)}
+          isEditMode={isEditMode}
+        />)
+      }
+    </div>
   </div>);
 }

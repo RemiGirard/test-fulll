@@ -1,14 +1,19 @@
 .main {
+  height: 480px;
+  width: 98%;
+  overflow: auto;
+  border: 1px solid var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.secondary {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 2px;
-  border: 1px solid var(--text-color);
-  margin: 1%;
-  width: 98%;
-  height: 480px;
-  overflow: auto;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .loading {
